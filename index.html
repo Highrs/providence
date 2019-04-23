@@ -1,1 +1,347 @@
-Providence.
+// URL: https://observablehq.com/@gchapyzh/providence-assets
+// Title: Providence Assets
+// Author: Highscore (@gchapyzh)
+// Version: 161
+// Runtime version: 1
+
+const m0 = {
+  id: "ebb4f6ca5b75449c@161",
+  variables: [
+    {
+      inputs: ["md"],
+      value: (function(md){return(
+md`# Providence Assets
+
+<img src="https://gchapyzh.github.io/providence/assets/Keepstar_B.png">
+
+`
+)})
+    },
+    {
+      name: "htmlElement",
+      inputs: ["html","width"],
+      value: (function(html,width){return(
+html`<div id="3d-graph" style="height: ${.75 * width}px;"></div>`
+)})
+    },
+    {
+      inputs: ["ForceGraph3D","htmlElement","width","THREE","gData"],
+      value: (function(ForceGraph3D,htmlElement,width,THREE,gData)
+{
+  
+    const Graph = ForceGraph3D()
+      (htmlElement)
+        .width(width)
+        .height(.75 * width)
+        .linkColor(link => link.type ? 'red' : 'white' )
+        .linkOpacity(.7)
+        .nodeThreeObject(({ img }) => {
+          // use a sphere as a drag handle
+          const obj = new THREE.Mesh(
+            new THREE.SphereGeometry(10),
+            new THREE.MeshBasicMaterial({ depthWrite: false, transparent: true, opacity: 0 })
+          );
+          // add img sprite as child
+          const imgTexture = new THREE.TextureLoader()
+            .load(`https://gchapyzh.github.io/providence/assets/${img}.png`);
+            // .load(`https://raw.githubusercontent.com/vasturiano/3d-force-graph/master/example/img-nodes/imgs/${img}.jpg`);
+          const material = new THREE.SpriteMaterial({ map: imgTexture });
+          const sprite = new THREE.Sprite(material);
+          sprite.scale.set(10, 10, 1);
+          obj.add(sprite);
+          return obj;
+        })
+        .graphData(gData)
+        .linkCurvature('curvature')
+        .d3Force('link').distance(link => link.type ? 50 : 20);
+  
+    return Graph
+
+}
+)
+    },
+    {
+      name: "imgs",
+      value: (function(){return(
+'Cap Astrahus_B Astrahus_R Fortizar_B Fortizar_R Keepstar_B Keepstar_R System_B System_R'.split(' ')
+)})
+    },
+    {
+      name: "gData",
+      value: (function(){return(
+{
+  nodes: [
+    //Center
+    {id: 0, img: 'Keepstar_B', name: '9UY4-H', owner: "CVA"},
+    //CAPS
+    {id: 1001, img: 'Cap', name: 'Dital'},
+    {id: 1002, img: 'Cap', name: 'Assah'},
+    {id: 1003, img: 'Cap', name: 'Kari'},
+    {id: 1004, img: 'Cap', name: 'ZQ-Z3Y'},
+    {id: 1005, img: 'Cap', name: 'UL-7I8'},
+    {id: 1006, img: 'Cap', name: 'IS-R7P'},
+    {id: 1007, img: 'Cap', name: '7MD-S1'},
+    {id: 1008, img: 'Cap', name: 'F9E-KX'},
+    {id: 1009, img: 'Cap', name: 'Misaba'},
+    //SECTOR 1
+    {id: 1, img: 'System_B', name: '4B-NQN', owner: "CVA"},
+    {id: 2, img: 'System_B', name: 'YWS0-Z'},
+    {id: 3, img: 'System_B', name: 'XHQ-7V'},
+    {id: 4, img: 'System_B', name: 'KBP7-G'},
+    {id: 5, img: 'System_B', name: '9-FOB2'},
+    {id: 6, img: 'System_B', name: 'G-5EN2'},
+    {id: 7, img: 'System_B', name: 'B-WPLZ'},
+    {id: 8, img: 'System_B', name: 'TU-O0T'},
+    {id: 9, img: 'System_B', name: 'E-YCML'},
+    {id: 10, img: 'System_B', name: 'Y9-MDG'},
+    {id: 11, img: 'System_B', name: 'JEIV-E'},
+    {id: 12, img: 'System_B', name: 'O-Y5JQ', owner: "CVA"},
+    {id: 13, img: 'System_B', name: 'N-RMSH', owner: "CVA"},
+    {id: 14, img: 'System_B', name: 'DNR-7M'},
+    {id: 15, img: 'System_B', name: 'IWZ3-C'},
+    {id: 16, img: 'System_B', name: 'K1Y-5H'},
+    //SECTOR 2
+    {id: 17, img: 'System_R', name: 'H6-CX8'},
+    {id: 18, img: 'System_R', name: 'Shintaht'},
+    {id: 19, img: 'System_R', name: 'D-6WS1'},
+    {id: 20, img: 'System_R', name: 'SI-I89'},
+    {id: 21, img: 'System_R', name: 'D61A-G'},
+    {id: 22, img: 'System_R', name: 'Y-MPWL'},
+    //SECTOR 3
+    {id: 23, img: 'System_B', name: '49GC-R'},
+    {id: 24, img: 'System_B', name: '3GXF-U'},
+    {id: 25, img: 'System_B', name: 'VKI-T7'},
+    {id: 26, img: 'System_B', name: 'H-GKI6'},
+    {id: 27, img: 'System_B', name: 'YQB-22'},
+    {id: 28, img: 'System_B', name: '8P9-BM'},
+    {id: 29, img: 'System_B', name: 'F-YH5B'},
+    {id: 30, img: 'Fortizar_B', name: 'U-HYMT'},
+    {id: 31, img: 'System_B', name: 'FC-3YI'},
+    {id: 32, img: 'System_B', name: 'QR-K85'},
+    {id: 33, img: 'System_B', name: '5IO8-U'},
+    {id: 34, img: 'System_B', name: 'DP-JD4'},
+    {id: 35, img: 'System_B', name: 'OXIY-V'},
+    {id: 36, img: 'System_B', name: '3D-CQU', owner: "CVA"},
+    {id: 37, img: 'System_B', name: '3KB-J0', owner: "CVA"},
+    {id: 38, img: 'System_B', name: '0B-HLZ'},
+    {id: 39, img: 'System_B', name: 'I-MGAB'},
+    {id: 40, img: 'System_B', name: '18XA-C'},
+    {id: 41, img: 'System_B', name: 'Z-RFE3'},
+    //SECTOR 4
+    {id: 42, img: 'System_B', name: 'LF-2KP'},
+    {id: 43, img: 'System_B', name: 'MVCJ-E'},
+    {id: 44, img: 'System_B', name: 'BK4-YC'},
+    {id: 45, img: 'System_B', name: 'K1I1-J'},
+    {id: 46, img: 'System_B', name: '2-TEGJ'},
+    {id: 47, img: 'System_B', name: 'AY-24I'},
+    {id: 48, img: 'System_B', name: 'X6AB-Y'},
+    {id: 49, img: 'System_B', name: '8B-VLX'},
+    {id: 50, img: 'System_B', name: 'X-R3NM'},
+    {id: 51, img: 'System_B', name: 'G-B22J'},
+    {id: 52, img: 'System_B', name: 'R3-K7K'},
+    //SECTOR 5
+    {id: 53, img: 'System_B', name: 'N8XA-L'},
+    {id: 54, img: 'System_B', name: '18-GZM'},
+    {id: 55, img: 'System_B', name: '1-1I53'},
+    {id: 56, img: 'System_B', name: 'ZT-LPU'},
+    {id: 57, img: 'System_B', name: 'AY-YCU'},
+    {id: 58, img: 'System_B', name: 'TU-RI6'},
+    {id: 59, img: 'System_B', name: '2V-CS5'},
+    {id: 60, img: 'System_B', name: 'H9-J8N'},
+    {id: 61, img: 'System_B', name: 'C1-HAB'},
+    {id: 62, img: 'System_B', name: 'HP-6Z6'},
+    {id: 63, img: 'System_B', name: 'GA9P-0'},
+    {id: 83, img: 'System_B', name: 'TXJ-II'},
+    {id: 64, img: 'System_B', name: '7YWV-S'},
+    {id: 65, img: 'System_B', name: 'MH9C-S'},
+    {id: 66, img: 'System_B', name: 'FX-7EM'},
+    {id: 67, img: 'System_B', name: 'FSW-3C'},
+    {id: 68, img: 'System_B', name: 'D-GTMI'},
+    {id: 69, img: 'System_B', name: 'T-RPFU'},
+    //SECTOR 6
+    {id: 70, img: 'System_B', name: 'G7AQ-7'},
+    {id: 71, img: 'System_B', name: 'I7S-1S'},
+    {id: 72, img: 'System_B', name: 'S9X-AX'},
+    {id: 73, img: 'System_B', name: '6-OQJV'},
+    {id: 74, img: 'System_B', name: '08Z-JJ'},
+    {id: 75, img: 'System_B', name: 'X-4WZD'},
+    {id: 76, img: 'System_B', name: 'QBL-BV'},
+    {id: 77, img: 'System_B', name: 'PI5-39'},
+    {id: 78, img: 'System_B', name: 'INQ-WR'},
+    {id: 79, img: 'System_B', name: 'GN7-XY'},
+    {id: 80, img: 'System_B', name: 'QO-SRI'},
+    {id: 81, img: 'System_B', name: 'F-DTOO'},
+    {id: 82, img: 'System_B', name: '5KG-PY'},
+    
+    //{id: , img: 'System_B', name: ''},
+  ],
+  links: [
+    //FLEX GATES
+    {source: 0, target: 4, type: 'FLEX', curvature: .5},
+    {source: 1, target: 13, type: 'FLEX', curvature: .5},
+    {source: 31, target: 40, type: 'FLEX', curvature: .5},
+    {source: 30, target: 52, type: 'FLEX', curvature: .5},
+    {source: 43, target: 51, type: 'FLEX', curvature: .5},
+    {source: 44, target: 54, type: 'FLEX', curvature: .5},
+    {source: 48, target: 64, type: 'FLEX', curvature: .5},
+    {source: 50, target: 72, type: 'FLEX', curvature: .5},
+    {source: 56, target: 65, type: 'FLEX', curvature: .5},
+    {source: 68, target: 81, type: 'FLEX', curvature: .5},
+    {source: 73, target: 79, type: 'FLEX', curvature: .5},
+    {source: 76, target: 82, type: 'FLEX', curvature: .5},
+    {source: 23, target: 69, type: 'FLEX', curvature: .5},
+    //Caps
+    {source: 4, target: 1001},
+    {source: 6, target: 1002},
+    {source: 22, target: 1003},
+    {source: 0, target: 1004},
+    {source: 35, target: 1005},
+    {source: 34, target: 1006},
+    {source: 37, target: 1006},
+    {source: 52, target: 1009},
+    //SECTOR 1
+    {source: 0, target: 1},
+    {source: 1, target: 2},
+    {source: 1, target: 5},
+    {source: 2, target: 5},
+    {source: 5, target: 6},
+    {source: 2, target: 3},
+    {source: 3, target: 4},
+    {source: 4, target: 7},
+    {source: 7, target: 8},
+    {source: 7, target: 9},
+    {source: 7, target: 10},
+    {source: 8, target: 9},
+    {source: 8, target: 10},
+    {source: 9, target: 10},
+    {source: 3, target: 11},
+    {source: 11, target: 12},
+    {source: 12, target: 13},
+    {source: 11, target: 13},
+    {source: 11, target: 14},
+    {source: 13, target: 15},
+    {source: 14, target: 16},
+    {source: 15, target: 16},
+    //SECTOR 2
+    {source: 0, target: 17},
+    {source: 17, target: 18},
+    {source: 18, target: 19},
+    {source: 19, target: 20},
+    {source: 17, target: 21},
+    {source: 21, target: 22},
+    //SECTOR 3
+    {source: 0, target: 23},
+    {source: 23, target: 24},
+    {source: 24, target: 25},
+    {source: 25, target: 26},
+    {source: 26, target: 27},
+    {source: 24, target: 28},
+    {source: 28, target: 29},
+    {source: 0, target: 30},
+    {source: 30, target: 31},
+    {source: 30, target: 32},
+    {source: 30, target: 33},
+    {source: 31, target: 32},
+    {source: 31, target: 33},
+    {source: 32, target: 33},
+    {source: 32, target: 34},
+    {source: 33, target: 34},
+    {source: 34, target: 35},
+    {source: 29, target: 36},
+    {source: 36, target: 37},
+    {source: 36, target: 38},
+    {source: 37, target: 38},
+    {source: 37, target: 41},
+    {source: 38, target: 39},
+    {source: 39, target: 40},
+    {source: 40, target: 41},
+    //SECTOR 4
+    {source: 29, target: 42},
+    {source: 42, target: 43},
+    {source: 42, target: 45},
+    {source: 43, target: 44},
+    {source: 43, target: 46},
+    {source: 45, target: 46},
+    {source: 45, target: 47},
+    {source: 46, target: 47},
+    {source: 47, target: 48},
+    {source: 48, target: 49},
+    {source: 48, target: 50},
+    {source: 48, target: 51},
+    {source: 49, target: 50},
+    {source: 49, target: 51},
+    {source: 50, target: 51},
+    {source: 50, target: 52},
+    //SECTOR 5
+    {source: 52, target: 53},
+    {source: 53, target: 54},
+    {source: 53, target: 55},
+    {source: 54, target: 55},
+    {source: 55, target: 56},
+    {source: 56, target: 57},
+    {source: 57, target: 58},
+    {source: 57, target: 59},
+    {source: 59, target: 60},
+    {source: 60, target: 61},
+    {source: 60, target: 62},
+    {source: 60, target: 63},
+    {source: 61, target: 62},
+    {source: 61, target: 63},
+    {source: 62, target: 63},
+    {source: 62, target: 64},
+    {source: 63, target: 83},
+    {source: 64, target: 65},
+    {source: 65, target: 66},
+    {source: 65, target: 69},
+    {source: 66, target: 67},
+    {source: 67, target: 68},
+    {source: 68, target: 69},
+    {source: 68, target: 1008},
+    {source: 69, target: 1007},
+    //SECTOR 6
+    {source: 67, target: 70},
+    {source: 70, target: 71},
+    {source: 70, target: 76},
+    {source: 71, target: 72},
+    {source: 72, target: 73},
+    {source: 72, target: 74},
+    {source: 72, target: 58},
+    {source: 73, target: 74},
+    {source: 73, target: 75},
+    {source: 74, target: 75},
+    {source: 76, target: 77},
+    {source: 77, target: 78},
+    {source: 77, target: 79},
+    {source: 78, target: 79},
+    {source: 79, target: 80},
+    {source: 79, target: 81},
+    {source: 80, target: 81},
+    {source: 81, target: 82}
+    //{source: 0, target: 0},
+  ]
+}
+)})
+    },
+    {
+      name: "THREE",
+      inputs: ["require"],
+      value: (function(require){return(
+require("three")
+)})
+    },
+    {
+      name: "ForceGraph3D",
+      inputs: ["require"],
+      value: (function(require){return(
+require('3d-force-graph')
+)})
+    }
+  ]
+};
+
+const notebook = {
+  id: "ebb4f6ca5b75449c@161",
+  modules: [m0]
+};
+
+export default notebook;
